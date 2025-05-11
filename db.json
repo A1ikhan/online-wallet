@@ -1,0 +1,45 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "user@example.com",
+      "password": "password123"
+    }
+  ],
+  "transactions": [
+    {
+      "id": 1,
+      "userId": 1,
+      "type": "expense",
+      "amount": 15.99,
+      "category": "Food",
+      "date": "2023-05-15",
+      "comment": "Lunch at cafe"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "type": "income",
+      "amount": 1200.00,
+      "category": "Salary",
+      "date": "2023-05-01",
+      "comment": "Monthly salary"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "userId": 1,
+      "name": "Food",
+      "type": "expense",
+      "color": "#FF6384"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "name": "Salary",
+      "type": "income",
+      "color": "#36A2EB"
+    }
+  ]
+}
