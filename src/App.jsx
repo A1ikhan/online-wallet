@@ -6,7 +6,7 @@ import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 import Statistics from './pages/Statistics'
 import Categories from './pages/Categories'
-
+import NotFound from "./pages/NotFound"; 
 
 function App() {
   return (

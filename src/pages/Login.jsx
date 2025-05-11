@@ -12,19 +12,16 @@ export default function Login() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    try {
-      const response = await loginUser({ email, password })
-      dispatch(loginSuccess(response))
-      localStorage.setItem('token', response.token)
-      navigate('/')
-    } catch (error) {
-      setError(error.message || 'Login failed')
-      dispatch(loginFailure(error.message))
-    }
-  }
 
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    await dispatch(loginUser({ email, password })).unwrap();
+    navigate('/dashboard');
+  } catch (error) {
+    console.error('Login failed:', error);
+  }
+};
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Login</h2>
