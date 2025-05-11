@@ -11,12 +11,14 @@ export default function Login() {
   const [error, setError] = useState('')
   const dispatch = useDispatch()
   const navigate = useNavigate()
-
+  const { loading } = useSelector((state) => state.auth);
 
   const handleSubmit = async (e) => {
   e.preventDefault();
+  console.log('Login started'); // Debug 1
   try {
     await dispatch(loginUser({ email, password })).unwrap();
+    console.log('Login succeeded:', result); // Debug 2
     navigate('/dashboard');
   } catch (error) {
     console.error('Login failed:', error);
@@ -39,10 +41,11 @@ export default function Login() {
           type="password"
           className={styles.input}
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          // onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
           required
         />
+        {/* <button disabled={loading}>{loading ? 'Logging in...' : 'Login'}</button> */}
         <button type="submit" className={styles.button}>Login</button>
       </form>
     </div>

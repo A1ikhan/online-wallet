@@ -27,6 +27,13 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+const initialState = {
+  user: null,
+  token: null,
+  isAuthenticated: false,
+  status: 'idle',
+  error: null
+}
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
@@ -77,19 +84,20 @@ const authSlice = createSlice({
     builder
       // Login cases
       .addCase(loginUser.pending, (state) => {
-        state.status = 'loading';
-        state.error = null;
-      })
-      .addCase(loginUser.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.isAuthenticated = true;
-        state.user = action.payload.user;
-        state.token = action.payload.token;
-      })
-      .addCase(loginUser.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.payload;
-      })
+      state.status = 'loading';
+      state.error = null;
+    })
+    .addCase(loginUser.fulfilled, (state, action) => {
+      state.status = 'succeeded';
+      state.isAuthenticated = true;
+      state.user = action.payload.user;
+      state.token = action.payload.token;
+      state.loading = false; // Add this if needed
+    })
+    .addCase(loginUser.rejected, (state, action) => {
+      state.status = 'failed';
+      state.error = action.payload;
+    })
       // Registration cases
       .addCase(registerUser.pending, (state) => {
         state.status = 'loading';
@@ -105,6 +113,7 @@ const authSlice = createSlice({
         state.status = 'failed';
         state.error = action.payload;
       });
+      
   }
 });
 
